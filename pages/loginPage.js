@@ -1,32 +1,31 @@
-class LoginPage {
+let BasePage = require('../pages/basePage');
+
+class LoginPage extends BasePage {
     constructor() {
+        super();
         this.usernameField = element(by.css(`input[type='email']`));
-        this.futherButtonOnLoginPage = element(by.css(`div[id='identifierNext']`));
+        this.nextButtonOnLoginPage = element(by.id(`identifierNext`));
         this.passwordField = element(by.css(`input[type='password']`));
-        this.futherButtonOnPasswordPage = element(by.css(`div[id='passwordNext']`));
-        this.inboxButton = element(by.css(`div[class='aim ain']`));
-    }
-    async SendKeysToLoginField() {
-        return this.usernameField.sendKeys(`testmailelena66@gmail.com`);
+        this.nextButtonOnPasswordPage = element(by.id(`passwordNext`));
     }
 
-    async ClickOnFutherButtonOnLoginPage() {
-        await browser.wait(protractor.ExpectedConditions.elementToBeClickable(this.futherButtonOnLoginPage), 10000, "Futher button on Login page is not clickable");
-        return this.futherButtonOnLoginPage.click();
+    async SendKeysToEmailField(login) {
+        return this.usernameField.sendKeys(login);
     }
 
-    async SendKeysToPasswordField() {
-        await browser.wait(protractor.ExpectedConditions.visibilityOf(this.passwordField), 10000, "It is impossible to enter password on Password field");
-     return this.passwordField.sendKeys(`Password12!`);
+    async ClickOnNextButtonOnLoginPage() {
+        await browser.wait(this.isClickable(this.nextButtonOnLoginPage), this.timeout.xs, "Futher button on Login page is not clickable");
+        return this.nextButtonOnLoginPage.click();
     }
 
-    async ClickOnFutherButtonOnPasswordPage() {
-        await browser.wait(protractor.ExpectedConditions.elementToBeClickable(this.futherButtonOnPasswordPage), 10000, "Futher button on Password page is not clickable");
-        return this.futherButtonOnPasswordPage.click();
+    async SendKeysToPasswordField(password) {
+        await browser.wait(this.isVisible(this.passwordField), this.timeout.s, "It is impossible to enter password on Password field");
+        return this.passwordField.sendKeys(password);
     }
 
-    async CheckInboxButtonIsPresent() {
-        await browser.wait(protractor.ExpectedConditions.visibilityOf(this.inboxButton), 10000, "Inbox button is not visible");
+    async ClickOnNextButtonOnPasswordPage() {
+
+        return this.nextButtonOnPasswordPage.click();
     }
 }
 

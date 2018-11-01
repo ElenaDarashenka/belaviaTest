@@ -1,35 +1,33 @@
-class SendEmailPage {
+let BasePage = require('../pages/basePage');
+
+class SendEmailPage extends BasePage {
     constructor() {
-        this.createEmailButton = element(by.css(`div[class='z0']`));
-        this.emailForm = element(by.css(`div[class='AD']`));
+        super();
+        this.createEmailButton = element(by.xpath(`//div[contains(text(), "Написать")]`));
         this.addresseeField = element(by.name(`to`));
         this.emailTitleField = element(by.name(`subjectbox`));
         this.emailBody = element(by.css(`.editable`));
-        this.sendButton = element(by.css(`td[class='gU Up']`));
+        this.sendButton = element(by.xpath(`//div[contains(text(), "Отправить")]`));
     }
 
     async ClickOnCreateEmailbutton() {
-        await browser.wait(protractor.ExpectedConditions.elementToBeClickable(this.createEmailButton), 10000, "Create email button is not clickable");
+        await browser.wait(this.isClickable(this.createEmailButton), this.timeout.xxl, "Create email button is not clickable");
         return this.createEmailButton.click();
     }
 
-    async SendKeysToAddresseeField() {
-        await browser.wait(protractor.ExpectedConditions.visibilityOf(this.addresseeField), 10000, "Addressee field is not visible");
-        return this.addresseeField.sendKeys(`testmailelena66@gmail.com`);
+    async SendKeysToAddresseeField(addresseName) {
+        return this.addresseeField.sendKeys(addresseName);
     }
 
-    async SendKeysToEmailTitleField() {
-        await browser.wait(protractor.ExpectedConditions.visibilityOf(this.emailTitleField), 10000, "Email title field is not visible");
-        return this.emailTitleField.sendKeys(`Hello!`);
+    async SendKeysToEmailTitleField(emailTitle) {
+        return this.emailTitleField.sendKeys(emailTitle);
     }
 
-    async SendKeysToEmailBody() {
-        await browser.wait(protractor.ExpectedConditions.visibilityOf(this.emailBody), 10000, "Email body field is not visible");
-        return this.emailBody.sendKeys(`How are you?`);
+    async SendKeysToEmailBody(emailBody) {
+        return this.emailBody.sendKeys(emailBody);
     }
 
     async ClickOnSendButton() {
-        await browser.wait(protractor.ExpectedConditions.elementToBeClickable(this.sendButton), 10000, "Send button is not clickable");
         return this.sendButton.click();
     }
 }
