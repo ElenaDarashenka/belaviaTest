@@ -1,7 +1,6 @@
 import checkIncomingEmailsPage from '../pages/CheckIncomingEmailsPage';
 import sendEmailPage from '../pages/SendEmailPage';
 import loginPage from '../pages/loginPage';
-import basePage from '../pages/basePage';
 import testData from '../data/testData';
 
 const { login, password, emailBody } = testData.data;
@@ -14,16 +13,12 @@ describe('Log in and send an email', () => {
         await loginPage.clickOnNextButtonOnLoginPage();
         await loginPage.sendKeysToPasswordField(password);
         await loginPage.clickOnNextButtonOnPasswordPage();
-        //expect(await browser.wait(basePage.urlContains('inbox')));
-        // this.timeout.xl, "Inbox button is not visible");
-        browser.wait(ExpectedConditions.urlContains('inbox'), 5000, `Page with inbox messages is not presented`);
-
+        expect(await loginPage.urlContains('inbox'));
     });
 
     it('should be possible to send email and find it in Inbox folder', async () => {
         const email = checkIncomingEmailsPage.sentEmail;
         const emailTitle = new Date().getUTCMilliseconds();
-
         await sendEmailPage.clickOnCreateEmailbutton();
         await sendEmailPage.sendKeysToAddresseeField(login);
         await sendEmailPage.sendKeysToEmailTitleField(emailTitle);

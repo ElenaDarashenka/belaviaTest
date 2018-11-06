@@ -60,7 +60,7 @@ export default class BasePage {
     }
 
     urlContains(text) {
-        return protractor.ExpectedConditions.urlContains(text), 5000, 'Page is not presented, URL is not contain ' + text;
+        return browser.wait(ExpectedConditions.urlContains(text), 10000, `Page with inbox messages is not presented`);
     }
 
     inDom(locator) {

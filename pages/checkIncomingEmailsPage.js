@@ -4,7 +4,7 @@ class CheckIncomingEmails extends BasePage {
   constructor() {
     super();
     this.inboxButton = element(by.xpath(`//span//a[contains(text(), "Входящие")]`));
-    this.sentEmail = element(by.css(`span[class='bog']`));//xpath(`//tbody//tr//td[6]`));
+    this.sentEmail = element(by.css(`span[class='bog']`));
   }
 
   async clickOnInboxButton() {
