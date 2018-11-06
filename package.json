@@ -1,6 +1,3 @@
-{ "husky": 
-  { "hooks": 
-  { "pre-commit": "pretty-quick --staged" } } },
 {
   "name": "protractor_example",
   "version": "1.1.0",
@@ -11,7 +8,9 @@
   "scripts": {
     "prepare": "node_modules/.bin/webdriver-manager update",
     "update": "node_modules/.bin/webdriver-manager update",
-    "test": "node_modules/.bin/protractor conf.js"
+    "test": "node_modules/.bin/protractor conf.js",
+    "prettier": "node node_modules/prettier/bin-prettier.js --write ./src/**/*.js --ignore-path */**/*.config.js --trailing-comma=es5 --single-quote --print-width=120",
+    "lint": "eslint ./src/**/*.js --ignore-pattern */**/*.config.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +30,11 @@
   },
   "homepage": "https://github.com/qualityshepherd/protractor_example",
   "dependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-prettier": "^2.6.1",
     "babel": "^6.23.0",
     "chance": "1.0.16",
     "http-server": "^0.11.1",
