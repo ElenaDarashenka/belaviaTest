@@ -1,4 +1,4 @@
-module.exports = class BasePage {
+export default class BasePage {
     constructor() {
         /**
          * wrap this.timeout. (ms) in t-shirt sizes
@@ -57,6 +57,10 @@ module.exports = class BasePage {
 
     isNotVisible(locator) {
         return protractor.ExpectedConditions.invisibilityOf(locator);
+    }
+
+    urlContains(text) {
+        return protractor.ExpectedConditions.urlContains(text), 5000, 'Page is not presented, URL is not contain ' + text;
     }
 
     inDom(locator) {

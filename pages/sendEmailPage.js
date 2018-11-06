@@ -1,4 +1,4 @@
-let BasePage = require('../pages/basePage');
+import BasePage from '../pages/basePage';
 
 class SendEmailPage extends BasePage {
     constructor() {
@@ -10,26 +10,26 @@ class SendEmailPage extends BasePage {
         this.sendButton = element(by.xpath(`//div[contains(text(), "Отправить")]`));
     }
 
-    async ClickOnCreateEmailbutton() {
-        await browser.wait(this.isClickable(this.createEmailButton), this.timeout.xxl, "Create email button is not clickable");
+    async clickOnCreateEmailbutton() {
+        await browser.wait(this.isClickable(this.createEmailButton), this.timeout.xxl, "'Create email' button is not clickable");
         return this.createEmailButton.click();
     }
 
-    async SendKeysToAddresseeField(addresseName) {
+    async sendKeysToAddresseeField(addresseName) {
         return this.addresseeField.sendKeys(addresseName);
     }
 
-    async SendKeysToEmailTitleField(emailTitle) {
+    async sendKeysToEmailTitleField(emailTitle) {
         return this.emailTitleField.sendKeys(emailTitle);
     }
 
-    async SendKeysToEmailBody(emailBody) {
+    async sendKeysToEmailBody(emailBody) {
         return this.emailBody.sendKeys(emailBody);
     }
 
-    async ClickOnSendButton() {
+    async clickOnSendButton() {
         return this.sendButton.click();
     }
 }
 
-module.exports = new SendEmailPage();
+export default new SendEmailPage();

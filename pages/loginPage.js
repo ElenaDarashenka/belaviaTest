@@ -1,4 +1,4 @@
-let BasePage = require('../pages/basePage');
+import BasePage from '../pages/basePage';
 
 class LoginPage extends BasePage {
     constructor() {
@@ -9,24 +9,23 @@ class LoginPage extends BasePage {
         this.nextButtonOnPasswordPage = element(by.id(`passwordNext`));
     }
 
-    async SendKeysToEmailField(login) {
+    async sendKeysToEmailField(login) {
         return this.usernameField.sendKeys(login);
     }
 
-    async ClickOnNextButtonOnLoginPage() {
-        await browser.wait(this.isClickable(this.nextButtonOnLoginPage), this.timeout.xs, "Futher button on Login page is not clickable");
+    async clickOnNextButtonOnLoginPage() {
+        await browser.wait(this.isClickable(this.nextButtonOnLoginPage), this.timeout.xs, "'Next' button on Login page is not clickable");
         return this.nextButtonOnLoginPage.click();
     }
 
-    async SendKeysToPasswordField(password) {
-        await browser.wait(this.isVisible(this.passwordField), this.timeout.s, "It is impossible to enter password on Password field");
+    async sendKeysToPasswordField(password) {
+        await browser.wait(this.isVisible(this.passwordField), this.timeout.s, "Password field is not visible");
         return this.passwordField.sendKeys(password);
     }
 
-    async ClickOnNextButtonOnPasswordPage() {
-
+    async clickOnNextButtonOnPasswordPage() {
         return this.nextButtonOnPasswordPage.click();
     }
 }
 
-module.exports = new LoginPage();
+export default new LoginPage();
