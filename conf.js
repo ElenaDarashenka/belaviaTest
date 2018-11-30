@@ -5,9 +5,17 @@ require("babel-register")({
 exports.config = {
     directConnect: true,
     SELENIUM_PROMISE_MANAGER: false,
-    specs: ['test/loginAndSendEmailTest.js'],
-    baseUrl: 'http://gmail.com',
+    baseUrl: 'https://en.belavia.by',
     framework: 'jasmine',
+
+    multiCapabilities: [
+        {
+            "browserName": "chrome",        
+            shardTestFiles: true,
+            maxInstances: 2,
+            specs: ['test/bookFlightTest.js', 'test/bookHotelTest.js']
+        },
+    ],
 
     onPrepare: () => {
         browser.ignoreSynchronization=true;

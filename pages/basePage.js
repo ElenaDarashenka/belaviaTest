@@ -51,6 +51,12 @@ export default class BasePage {
      * that are 9% more sexy, and allow us to add logging, etc...
      * @returns {ExpectedCondition}
      */
+    randomValue(min, max) {
+        let rand = min + Math.random() * (max - min);
+        rand = Math.round(rand);
+        return rand;
+      }
+
     isVisible(locator) {
         return protractor.ExpectedConditions.visibilityOf(locator);
     }
