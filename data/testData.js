@@ -6,11 +6,11 @@ const flightData = {
   expirationDate: '21122027',
   phoneNumber: '291234567',
   email: 'testtest66@gmail.com',
-  url: 'payment',
+  urlSelectFlight: 'select',
+  urlPassengers: 'passengers',
+  urlExtras: 'extras',
+  urlPayment: 'checkout',
+  urlConfirmation: 'payment',
 }
 
-const hotelData = {
-  url: 'booking.com',
-}
-
-export default { flightData, hotelData };
+export default { flightData };

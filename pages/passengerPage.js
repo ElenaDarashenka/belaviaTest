@@ -1,5 +1,5 @@
-import BasePage from '../basePage';
-import testData from '../../data/testData';
+import BasePage from '../pages/basePage';
+import testData from '../data/testData';
 
 const { firstName, lastName, dateOfBirth, passportNumber, expirationDate, phoneNumber, email } = testData.flightData;
 

@@ -1,19 +1,57 @@
-import chooseFlightStep from '../steps/flightSteps/chooseFlightStep';
-import passengerInfoStep from '../steps/flightSteps/passengerInfoStep';
-import baggageInfoStep from '../steps/flightSteps/baggageInfoStep';
-import paymentStep from '../steps/flightSteps/paymentStep';
+import findFlightPage from '../pages/findFlightPage';
+import selectFlightPage from '../pages/selectFlightPage';
+import passengerPage from '../pages/passengerPage';
+import additionalBaggagePage from '../pages/additionalBaggagePage';
+import paymentPage from '../pages/paymentPage';
 import testData from '../data/testData';
 
-const { url } = testData.flightData;
+const { urlSelectFlight, urlPassengers, urlExtras, urlPayment, urlConfirmation } = testData.flightData;
 
-describe('Book the flight with random values', () => {
+describe('Book the flight on belavia website', () => {
 
-  it('confirmation page should be opened', async () => {
-    await chooseFlightStep.searchFlight();
-    await chooseFlightStep.selectFlight();
-    await passengerInfoStep.inputInfoAboutPassenger();
-    await baggageInfoStep.checkBaggageInfo();
-    await paymentStep.choosePaymentType();
-    expect(await paymentStep.waitUrlContains(url, '"Confirmation" page is opened'));
+  it('choose destination and dates for flight', async () => {
+    browser.get(browser.baseUrl);
+    await findFlightPage.clickOnFromDropdown();
+    await findFlightPage.selectValueInFromDropdown();
+    await findFlightPage.clickOnToDropdown();
+    await findFlightPage.selectValueInToDropdown();
+    await findFlightPage.selectOneWayCheckbox();
+    await findFlightPage.openCalendar();
+    await findFlightPage.chooseDepartureDate();
+    await findFlightPage.clickOnSearchButton();
+    expect(await findFlightPage.waitUrlContains(urlSelectFlight, '"Flight selection" page is opened'));
+  });
+
+  it('select first flight', async () => {
+    await selectFlightPage.selectFlight();
+    await selectFlightPage.chooseTypeOfFlight();
+    await selectFlightPage.clickOnNextButton();
+    expect(await findFlightPage.waitUrlContains(urlPassengers, '"Passengers info" page is opened'));
+  });
+
+  it('fill the "Passenger info" fields', async () => {
+    await passengerPage.openPassengersTitleDropdown();
+    await passengerPage.chooseTitle();
+    await passengerPage.inputFirstName();
+    await passengerPage.inputLastName();
+    await passengerPage.inputDateOfBirth();
+    await passengerPage.inputPassportNumber();
+    await passengerPage.inputExpirationDate();
+    await passengerPage.inputPhoneNumber();
+    await passengerPage.inputEmail();
+    await passengerPage.clickOnNextButton();
+    expect(await findFlightPage.waitUrlContains(urlExtras, '"Additional baggage" page is opened'));
+  });
+
+  it('check baggage info', async () => {
+    await additionalBaggagePage.waitForYourSelectionTitle();
+    await additionalBaggagePage.clickOnNextButton();
+    expect(await findFlightPage.waitUrlContains(urlPayment, '"Payment" page is opened'));
+  });
+
+  it('choose payment type', async () => {
+    await paymentPage.checkRulesCheckbox();
+    await paymentPage.clickOnNextButton();
+    expect(await findFlightPage.waitUrlContains(urlConfirmation, 'Confirmation page is opened'));
   });
 });

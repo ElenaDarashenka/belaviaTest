@@ -1,4 +1,4 @@
-import BasePage from '../basePage';
+import BasePage from '../pages/basePage';
 
 class paymentPage extends BasePage {
   constructor() {

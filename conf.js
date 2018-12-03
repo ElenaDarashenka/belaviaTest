@@ -2,20 +2,48 @@ require("babel-register")({
     presets: [ 'es2015' ]
 });
 
+const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+
+const reporter = new HtmlScreenshotReporter({
+  dest: '/belaviaTest/screenshots',
+  filename: 'my-report.html',
+  showSummary: true,
+  showQuickLinks: true,
+  showConfiguration: true,
+  reportTitle: "Book flight Test Report",
+  reportFailedUrl: true,
+  inlineImages: true,
+
+});
+
+exports.config = {
+  // ...
+
+  // Setup the report before any tests start
+  beforeLaunch: function() {
+    return new Promise(function(resolve){
+      reporter.beforeLaunch(resolve);
+    });
+  },
+
+  // Assign the test reporter to each running instance
+  onPrepare: function() {
+    jasmine.getEnv().addReporter(reporter);
+  },
+
+  // Close the report after all tests finish
+  afterLaunch: function(exitCode) {
+    return new Promise(function(resolve){
+      reporter.afterLaunch(resolve.bind(this, exitCode));
+    });
+  }
+}
 exports.config = {
     directConnect: true,
     SELENIUM_PROMISE_MANAGER: false,
     baseUrl: 'https://en.belavia.by',
     framework: 'jasmine',
-
-    multiCapabilities: [
-        {
-            "browserName": "chrome",        
-            shardTestFiles: true,
-            maxInstances: 2,
-            specs: ['test/bookFlightTest.js', 'test/bookHotelTest.js']
-        },
-    ],
+    specs: ['test/bookFlightTest.js'],
 
     onPrepare: () => {
         browser.ignoreSynchronization=true;
