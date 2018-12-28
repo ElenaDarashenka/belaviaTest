@@ -9,7 +9,7 @@ const { urlSelectFlight, urlPassengers, urlExtras, urlPayment, urlConfirmation }
 
 describe('Book the flight on belavia website', () => {
 
-  it('choose destination and dates for flight', async () => {
+  it('1. Choose destination and dates for flight', async () => {
     browser.get(browser.baseUrl);
     await findFlightPage.clickOnFromDropdown();
     await findFlightPage.selectValueInFromDropdown();
@@ -22,14 +22,14 @@ describe('Book the flight on belavia website', () => {
     expect(await findFlightPage.waitUrlContains(urlSelectFlight, '"Flight selection" page is opened'));
   });
 
-  it('select first flight', async () => {
+  it('2. Select first flight', async () => {
     await selectFlightPage.selectFlight();
     await selectFlightPage.chooseTypeOfFlight();
     await selectFlightPage.clickOnNextButton();
     expect(await findFlightPage.waitUrlContains(urlPassengers, '"Passengers info" page is opened'));
   });
 
-  it('fill the "Passenger info" fields', async () => {
+  it('3. Fill the Passenger info fields', async () => {
     await passengerPage.openPassengersTitleDropdown();
     await passengerPage.chooseTitle();
     await passengerPage.inputFirstName();
@@ -43,15 +43,15 @@ describe('Book the flight on belavia website', () => {
     expect(await findFlightPage.waitUrlContains(urlExtras, '"Additional baggage" page is opened'));
   });
 
-  it('check baggage info', async () => {
+  it('4. Check baggage info', async () => {
     await additionalBaggagePage.waitForYourSelectionTitle();
     await additionalBaggagePage.clickOnNextButton();
     expect(await findFlightPage.waitUrlContains(urlPayment, '"Payment" page is opened'));
   });
 
-  it('choose payment type', async () => {
+  it('5. Choose payment type', async () => {
     await paymentPage.checkRulesCheckbox();
     await paymentPage.clickOnNextButton();
-    expect(await findFlightPage.waitUrlContains(urlConfirmation, 'Confirmation page is opened'));
+    expect(await findFlightPage.waitUrlContains(urlConfirmation, '"Confirmation" page is opened'));
   });
 });

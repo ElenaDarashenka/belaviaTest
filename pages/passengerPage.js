@@ -11,7 +11,7 @@ class passengerPage extends BasePage {
     this.passengerFirstName = element(by.id(`p_0_firstName`));
     this.passengerLastName = element(by.id(`p_0_lastName`));
     this.passengerDateOfBirth = element(by.id(`p_0_dateOfBirth`));
-    this.passengerPassportNumber = element(by.id(`p_0_documentNumber`));
+    this.passengerPassportNumber = element(by.xpath(`//*[@id="passengers"]/form/div[1]/div[1]/div[5]/div[2]`));//css(`input[name='p[0].documentNumber']`));//id(`p_0_documentNumber`));
     this.passengerExpirationDate = element(by.id(`p_0_passportDateOfExpiry`));
     this.passengerPhoneNumber = element(by.id(`phoneNumber`));
     this.passengerEmail = element(by.id(`email`));
@@ -19,7 +19,7 @@ class passengerPage extends BasePage {
   }
 
   async openPassengersTitleDropdown() {
-    await browser.wait(this.isVisible(this.titleDropdown), this.timeout.xxl, "Passenger's title is not visible");
+    await browser.driver.wait(this.isVisible(this.titleDropdown), this.timeout.xxl, "Passenger's title is not visible");
     return this.titleDropdown.click();
   }
 
@@ -40,6 +40,7 @@ class passengerPage extends BasePage {
   }
 
   async inputPassportNumber() {
+    await browser.driver.wait(this.isClickable(this.passengerPassportNumber), this.timeout.xxl, "Passenger's title is not visible");
     return this.passengerPassportNumber.sendKeys(passportNumber);
   }
 

@@ -5,12 +5,12 @@ class findFlightPage extends BasePage {
   constructor() {
     super();
     this.fromDropdown = element(by.xpath(`//div[@id='ibe']//i[@class='icon-down-open']`));
-    this.fromDropdownList = element(by.xpath(`//ul[@id='ui-id-2']//li[172]`));
+    this.fromDropdownList = element(by.css(`li.ui-menu-item:nth-child(172)`));//ul[@id='ui-id-2']//li[172]
     this.toDropdown = element(by.xpath(`//*[@id="ibe"]/form/div[1]/div[2]/div/a/i`));
     this.toDropdownList = element(by.xpath(`//ul[@id='ui-id-3']//li[174]`));
     this.OneWayCheckbox = element(by.css(`label[for='JourneySpan_Ow']`));
     this.calendar = element(by.className(`icon-calendar`));
-    this.departureDate = element(by.xpath(`//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']//following::td[1]`));
+    this.departureDate = element(by.xpath(`//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']//following::td[2]`));
     this.searchButton = element(by.css(`#step-2 div:nth-child(4) div button`));
   }
 
