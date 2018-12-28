@@ -22,13 +22,7 @@ const reporter = new HtmlScreenshotReporter({
 });
 
 exports.config = {
-<<<<<<< HEAD
-    sauceUser: "EDarashenka",
-    sauceKey: "cf30c4ab-2052-43bc-9301-592922aea9f3",
-    //directConnect: true,
-=======
     directConnect: true,
->>>>>>> d3c251a18ed9d122aa0499ca9a0f9bd4720fb6ce
     SELENIUM_PROMISE_MANAGER: false,
     baseUrl: 'https://en.belavia.by',
     framework: 'jasmine',
@@ -48,11 +42,8 @@ exports.config = {
         const SpecReporter = require('jasmine-spec-reporter');
         jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'specs' }));
         jasmine.getEnv().addReporter(reporter);
-<<<<<<< HEAD
-=======
 
     },
->>>>>>> d3c251a18ed9d122aa0499ca9a0f9bd4720fb6ce
 
     afterLaunch: function (exitCode) {
         // Close the report after all tests finish
@@ -61,13 +52,6 @@ exports.config = {
         });
     },
 
-<<<<<<< HEAD
-    afterLaunch: function (exitCode) {
-        // Close the report after all tests finish
-        return new Promise(function (resolve) {
-            reporter.afterLaunch(resolve.bind(this, exitCode));
-        });
-=======
     capabilities: {
         browserName: 'chrome',
         shardTestFiles: true,
@@ -88,7 +72,6 @@ exports.config = {
                 'password_manager_enabled': false
             }
         }
->>>>>>> d3c251a18ed9d122aa0499ca9a0f9bd4720fb6ce
     },
 
     jasmineNodeOpts: {
