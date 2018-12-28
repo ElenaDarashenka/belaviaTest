@@ -83,13 +83,13 @@ exports.config = {
     },
 
     multiCapabilities: [{
-        browserName: 'safari',
-        platform: 'macOS 10.12',
-        version: '10.1',
-        name: "safari-tests",
-        shardTestFiles: true,
-        maxInstances: 25
-    },
+    //     browserName: 'safari',
+    //     platform: 'macOS 10.12',
+    //     version: '10.1',
+    //     name: "safari-tests",
+    //     shardTestFiles: true,
+    //     maxInstances: 25
+    // },
 //     { 
 //     browserName: 'firefox',
 //     platform: 'Windows 10',
@@ -98,7 +98,7 @@ exports.config = {
 //     shardTestFiles: true,
 //     maxInstances: 25
 // }, 
-    {
+    //{
         browserName: 'chrome',
         version: '41',
         platform: 'Windows 7',
