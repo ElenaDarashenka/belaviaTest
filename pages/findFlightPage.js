@@ -10,7 +10,7 @@ class findFlightPage extends BasePage {
     this.toDropdownList = element(by.xpath(`//ul[@id='ui-id-3']//li[174]`));
     this.OneWayCheckbox = element(by.css(`label[for='JourneySpan_Ow']`));
     this.calendar = element(by.className(`icon-calendar`));
-    this.departureDate = element(by.xpath(`//*[@id="calendar"]/div/div[1]/table/tbody/tr[5]/td[7]//following::td[2]`));// | `//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']//following::td[2]`
+    this.departureDate = element(by.xpath(`//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']//following::td[2]`));
     this.searchButton = element(by.css(`#step-2 div:nth-child(4) div button`));
   }
 
